@@ -729,7 +729,7 @@ int ksu_handle_setuid(struct cred *new, const struct cred *old)
 #endif
 	}
 
-#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
+#ifndef CONFIG_KSU_SUSFS_SUS_MOUNT
 	// check old process's selinux context, if it is not zygote, ignore it!
 	// because some su apps may setuid to untrusted_app but they are in global mount namespace
 	// when we umount for such process, that is a disaster!
