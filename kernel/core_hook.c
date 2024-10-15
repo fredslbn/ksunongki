@@ -48,6 +48,7 @@
 #include "manager.h"
 #include "selinux/selinux.h"
 #include "throne_tracker.h"
+#include "kernel_compat.h"
 
 #ifdef CONFIG_KSU_SUSFS
 bool susfs_is_allow_su(void)
@@ -728,7 +729,7 @@ int ksu_handle_setuid(struct cred *new, const struct cred *old)
 #endif
 	}
 
-#ifndef CONFIG_KSU_SUSFS_SUS_MOUNT
+#ifdef CONFIG_KSU_SUSFS_SUS_MOUNT
 	// check old process's selinux context, if it is not zygote, ignore it!
 	// because some su apps may setuid to untrusted_app but they are in global mount namespace
 	// when we umount for such process, that is a disaster!
