@@ -704,7 +704,6 @@ int ksu_handle_setuid(struct cred *new, const struct cred *old)
 	}
 #endif
 
-
 	if (!is_appuid(new_uid) || is_unsupported_uid(new_uid.val)) {
 		// pr_info("handle setuid ignore non application or isolated uid: %d\n", new_uid.val);
 		return 0;
@@ -714,6 +713,7 @@ int ksu_handle_setuid(struct cred *new, const struct cred *old)
 		// pr_info("handle setuid ignore allowed application: %d\n", new_uid.val);
 		return 0;
 	}
+	
 #ifdef CONFIG_KSU_SUSFS_SUS_PATH
 	else {
 		// if new uid is not root granted, then drop a payload to inidicate that sus_path will be effective on this uid
@@ -740,6 +740,7 @@ int ksu_handle_setuid(struct cred *new, const struct cred *old)
 			current->pid);
 		return 0;
 	}
+	
 #ifdef CONFIG_KSU_DEBUG
 	// umount the target mnt
 	pr_info("handle umount for uid: %d, pid: %d\n", new_uid.val,
