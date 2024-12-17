@@ -123,7 +123,7 @@ config KSU_SUSFS_HIDE_KSU_SUSFS_SYMBOLS
 config KSU_SUSFS_SPOOF_PROC_CMDLINE
     bool "Enable to spoof /proc/cmdline"
     depends on KSU_SUSFS
-    default n
+    default y
     help
       - Spoof the output of /proc/cmdline with a user-defined file.
       - Effective on all processes.
